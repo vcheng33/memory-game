@@ -12,11 +12,16 @@
 
 }
 
+body {
+  background-color: #cecece;
+}
+
 #game div {
-  width: 15.2vw;
+  width: 16%;
   height: 22.8vw;
-  margin: 2vw;
+  margin: 2%;
   display: inline-block;
+  align-items: center;
   /* background: #262626; */
 }
 
@@ -34,23 +39,23 @@ h1 {
 }
 
 .red{
-  background-color: red;
+  background-color: #BE6A74;
 }
 
 .blue {
-  background-color: blue;
+  background-color: #A9BCCB;
 }
 
 .orange {
-  background-color: orange;
+  background-color: #E6B07A;
 }
 
 .green {
-  background-color: green;
+  background-color: #778A5A;
 }
 
 .purple {
-  background-color: purple;
+  background-color: #9B8295;
 }
 
 .blank {

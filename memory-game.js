@@ -60,8 +60,6 @@ function unFlipCard(array) {
     card.classList.add("blank");
   }
   chosenCards = [];
-  console.log("chosenCards at unFlipCard:", chosenCards);
-  debugger;
   return chosenCards;
 }
 
@@ -72,34 +70,33 @@ function handleCardClick(evt) {
     alert("Sorry, only two cards can be selected at a time.");
   }
 
-  // CARD is being flipped but not pushed to the array
-
   // CHECK IF THE CARD HAS ALREADY BEEN SELECTED:
   if (evt.target.classList.contains("blank") === false) {
     alert ("Sorry, this card has already been selected. Please choose another card.");
   } else if ((chosenCards.length < 2) && (evt.target.classList.contains("blank") === true)) {
     flipCard(evt.target);
     chosenCards.push(evt.target);
-  }
-
-  // WHEN TWO CARDS HAVE BEEN SELECTED, CHECK TO SEE IF THE CARDS ARE A MATCH.
-  if (chosenCards.length === 2) {
     chosenCards = checkMatch(chosenCards);
-    console.log("chosenCard at checkMatch:", chosenCards);
+    // checkComplete();
   }
-  console.log("chosenCards at final Return:", chosenCards);
-  return chosenCards;
 }
 
+// WHEN TWO CARDS HAVE BEEN SELECTED, CHECK TO SEE IF THE CARDS ARE A MATCH.
 function checkMatch (chosenCards) {
-  if (chosenCards[0].classList.value !== chosenCards[1].classList.value) {
-    setTimeout(unFlipCard, FOUND_MATCH_WAIT_MSECS, chosenCards);
-    console.log("chosenCard after setTimeout function:", chosenCards);
-  } else if (chosenCards[0].classList.value === chosenCards[1].classList.value) {
-    chosenCards = [];
+  if (chosenCards.length === 2) {
+    if (chosenCards[0].classList.value !== chosenCards[1].classList.value) {
+      setTimeout(unFlipCard, FOUND_MATCH_WAIT_MSECS, chosenCards);
+    } else if (chosenCards[0].classList.value === chosenCards[1].classList.value) {
+      chosenCards = [];
+    }
   }
-  console.log("chosenCard at the end of checkMatch:", chosenCards);
+
   return chosenCards;
 }
 
-
+// function checkComplete () {
+//   let blanks = document.querySelectorAll (".blanks");
+//   if (blanks.length === 0) {
+//     alert("Congratulations! You've won!");
+//   }
+// }
