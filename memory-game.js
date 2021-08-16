@@ -13,10 +13,8 @@ const colors = shuffle(COLORS);
 createCards(colors);
 
 let chosenCards = [];
-let chooseMoreCards = true;
 
 /** Shuffle array items in-place and return shuffled array. */
-
 function shuffle(items) {
   // This algorithm does a "perfect shuffle", where there won't be any
   // statistical bias in the shuffle (many naive attempts to shuffle end up not
@@ -34,13 +32,11 @@ function shuffle(items) {
 }
 
 /** Create card for every color in colors (each will appear twice)
- * Create a loop that creates a div for every color
+ * 
  * Each div DOM element will have:
  * - a class with the value of the color
  * - an click listener for each card to handleCardClick
  */
-
-
 function createCards(colors) {
   const gameBoard = document.getElementById("game");
 
@@ -54,72 +50,56 @@ function createCards(colors) {
 }
 
 /** Flip a card face-up. */
-
 function flipCard(card) {
-  // ... you need to write this ...
   card.classList.remove("blank");
 }
 
 /** Flip a card face-down. */
-
-function unFlipCard(chosenCards) {
-  // ... you need to write this ...
-  for (let card of chosenCards) {
+function unFlipCard(array) {
+  for (let card of array) {
     card.classList.add("blank");
   }
+  chosenCards = [];
+  console.log("chosenCards at unFlipCard:", chosenCards);
+  debugger;
   return chosenCards;
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
-
-
 function handleCardClick(evt) {
-  // ... you need to write this ...
-  if (chosenCards[0] === undefined) {
-    chosenCards[0] = evt.target;
-  } else if (chosenCards[1] === undefined) {
-    chosenCards[1] = evt.target;
-    chooseMoreCards = false;
-    // debugger;
-  } else {
-    debugger;
-    alert("Sorry, only two cards can be selected at a time");
-    return undefined;
+  // CHECK IF THERE ARE ALREADY 2 CHOSEN CARDS:
+  if (chosenCards.length === 2) {
+    alert("Sorry, only two cards can be selected at a time.");
   }
 
-  // debugger; chosenCards[0] !== undefined && chosenCards[1] !== undefined
-  // if (chosenCards.length === 2) {
-  //   lockedBoard = true;
-  // }
+  // CARD is being flipped but not pushed to the array
 
-  // debugger; (chosenCards[0] !== undefined || chosenCards[1] !== undefined) && 
-  // debugger;
-  if ((chosenCards.length <= 2) && (evt.target.classList.contains("blank"))){
+  // CHECK IF THE CARD HAS ALREADY BEEN SELECTED:
+  if (evt.target.classList.contains("blank") === false) {
+    alert ("Sorry, this card has already been selected. Please choose another card.");
+  } else if ((chosenCards.length < 2) && (evt.target.classList.contains("blank") === true)) {
     flipCard(evt.target);
-  } else {
-    alert("Sorry, this card has already been selected. Please choose another card.")
+    chosenCards.push(evt.target);
   }
-  
-  // debugger; 
+
+  // WHEN TWO CARDS HAVE BEEN SELECTED, CHECK TO SEE IF THE CARDS ARE A MATCH.
   if (chosenCards.length === 2) {
     chosenCards = checkMatch(chosenCards);
-    chosenCards = reset(chosenCards);
-    chooseMoreCards = true;
+    console.log("chosenCard at checkMatch:", chosenCards);
   }
- 
+  console.log("chosenCards at final Return:", chosenCards);
   return chosenCards;
 }
 
 function checkMatch (chosenCards) {
   if (chosenCards[0].classList.value !== chosenCards[1].classList.value) {
     setTimeout(unFlipCard, FOUND_MATCH_WAIT_MSECS, chosenCards);
-    return chosenCards;
-  } 
+    console.log("chosenCard after setTimeout function:", chosenCards);
+  } else if (chosenCards[0].classList.value === chosenCards[1].classList.value) {
+    chosenCards = [];
+  }
+  console.log("chosenCard at the end of checkMatch:", chosenCards);
   return chosenCards;
 }
 
-function reset (chosenCards) {
-  chosenCards = [];
-  return chosenCards;
-}
 
