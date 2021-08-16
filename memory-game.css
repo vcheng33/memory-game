@@ -1,0 +1,58 @@
+/* you can add to or change this. */
+* {
+  box-sizing: border-box;
+  font-family: Yantramanav;
+  /* background-color:#F2E9E4; */
+  margin: 0;
+  color: #A6A6A6;
+}
+
+#game {
+  padding: 2vw 2vw;
+
+}
+
+#game div {
+  width: 15.2vw;
+  height: 22.8vw;
+  margin: 2vw;
+  display: inline-block;
+  /* background: #262626; */
+}
+
+#banner {
+  background-color: #404040;
+  text-align: center;
+  padding: 1%;
+}
+
+h1 {
+  font-size: 8vw;
+  background-color:  #404040;
+  border: solid 0.1vw;
+  padding: 4vw 0vw;
+}
+
+.red{
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.green {
+  background-color: green;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.blank {
+  background-color: #262626;
+}
