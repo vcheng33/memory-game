@@ -22,7 +22,6 @@ body {
   margin: 2%;
   display: inline-block;
   align-items: center;
-  /* background: #262626; */
 }
 
 #banner {
@@ -60,4 +59,5 @@ h1 {
 
 .blank {
   background-color: #262626;
+  transition: background-color .5s;
 }
