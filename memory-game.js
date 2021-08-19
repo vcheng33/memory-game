@@ -77,7 +77,6 @@ function handleCardClick(evt) {
     flipCard(evt.target);
     chosenCards.push(evt.target);
     chosenCards = checkMatch(chosenCards);
-    // checkComplete();
   }
 }
 
@@ -94,9 +93,3 @@ function checkMatch (chosenCards) {
   return chosenCards;
 }
 
-// function checkComplete () {
-//   let blanks = document.querySelectorAll (".blanks");
-//   if (blanks.length === 0) {
-//     alert("Congratulations! You've won!");
-//   }
-// }
